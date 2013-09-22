@@ -22,23 +22,33 @@ namespace Sample2
                 // With the memory stream workaround, it bombs. 
                 // Not sure whether this is because of the conversion to byte, but unlikely to be a false positive.
                 string deferedStatement = "x <- 3";
-                var byteArr = Array.ConvertAll(deferedStatement.ToArray(), x => Convert.ToByte(x));
-                using (var stream = new MemoryStream(byteArr))
+
+                bool useDefer = false;
+                if (useDefer)
                 {
-                    // Defer method delays an effect on the R environment.
-                    var e = engine.Defer(stream);
-                    // Error: GetSymbol method returns null at the moment.
-                    // NumericVector x = engine.GetSymbol("x").AsNumeric();
+                    var byteArr = Array.ConvertAll(deferedStatement.ToArray(), c => Convert.ToByte(c));
+                    using (var stream = new MemoryStream(byteArr))
+                    {
+                        // Defer method delays an effect on the R environment.
+                        var e = engine.Defer(stream);
+                        // Error: GetSymbol method returns null at the moment.
+                        // NumericVector x = engine.GetSymbol("x").AsNumeric();
 
-                    // Evaluates the statement.
-                    e.ToArray();
-                    // You can now access x defined in the R environment.
-                    NumericVector x = engine.GetSymbol("x").AsNumeric();
-
-                    // Evaluate method evaluates the statement as soon as you call it.
-                    engine.Evaluate("y <- 1:10");
-                    NumericVector y = engine.GetSymbol("y").AsNumeric();
+                        // Evaluates the statement.
+                        e.ToArray();
+                    }
                 }
+                else
+                {
+                    // Blight me! reproduces an issue from https://rdotnet.codeplex.com/discussions/458547 indeed.
+                    var e = engine.Evaluate(deferedStatement);
+                }
+                // You can now access x defined in the R environment.
+                NumericVector x = engine.GetSymbol("x").AsNumeric();
+
+                // Evaluate method evaluates the statement as soon as you call it.
+                engine.Evaluate("y <- 1:10");
+                NumericVector y = engine.GetSymbol("y").AsNumeric();
             }
         }
     }
