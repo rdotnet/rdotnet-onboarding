@@ -33,10 +33,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="RDotNet">
-      <HintPath>..\..\..\..\bin\R.NET\1.5.5\RDotNet.dll</HintPath>
+      <HintPath>..\Binaries\RDotNet.dll</HintPath>
     </Reference>
     <Reference Include="RDotNet.NativeLibrary">
-      <HintPath>..\..\..\..\bin\R.NET\1.5.5\RDotNet.NativeLibrary.dll</HintPath>
+      <HintPath>..\Binaries\RDotNet.NativeLibrary.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
