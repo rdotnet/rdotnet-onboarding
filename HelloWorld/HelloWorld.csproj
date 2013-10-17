@@ -11,6 +11,8 @@
     <AssemblyName>HelloWorld</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <ProductVersion>12.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -55,7 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RDotNetSetup\RDotNetSetup.csproj">
-      <Project>{5a41ceba-0bb9-4802-915e-86b951a41af0}</Project>
+      <Project>{5A41CEBA-0BB9-4802-915E-86B951A41AF0}</Project>
       <Name>RDotNetSetup</Name>
     </ProjectReference>
   </ItemGroup>

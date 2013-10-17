@@ -40,4 +40,5 @@ You may want to look at and experiment with the projects in the following order:
 * HelloWorld
 * Sample1 is taken from the R.NET web site, a simple statistical T-test
 * Sample2 is mostly for issues diagnosis at this stage
+* Optimization: Adapted from my day work; simplified calibration and optimization problem. Shows various ways to call an R function including vectorized function evaluations.
 * Tutorial1: To Be Determined
