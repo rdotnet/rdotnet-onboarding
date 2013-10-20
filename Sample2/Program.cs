@@ -34,11 +34,14 @@ namespace Sample2
             engine.SetSymbol("cases", df);
             // Not correct: the 'y' column is a "factor". This returns "1", "1", "1", "2", "2", etc. 
             var letterCases = engine.Evaluate("cases[,'y']").AsCharacter().ToArray();
-            // This returns something more intuitive for C# 
+            // This returns something more intuitive for C#. Returns 'a','a','a','b','b','b','c' etc.
             letterCases = engine.Evaluate("as.character(cases[,'y'])").AsCharacter().ToArray();
 
             // invoking a whole script
             // engine.Evaluate("source('c:/src/path/to/myscript.r')");
+
+            // TODO
+            // Date-time objects
 
          }
       }
