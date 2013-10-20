@@ -16,6 +16,7 @@ namespace Sample2
             SetupHelper.SetupPath();
             using (REngine engine = REngine.CreateInstance("RDotNet"))
             {
+               engine.Initialize();
                 // Looking at the issues reported in https://rdotnet.codeplex.com/discussions/458547
                 // indeed the R.NET documentation page as of 22 Sept 2013 is off as to what Defer method there is.
                 // The following memory stream is a workaround out of curiosity: not something intended for ongoing use.
@@ -40,7 +41,6 @@ namespace Sample2
                 }
                 else
                 {
-                    // Blight me! reproduces an issue from https://rdotnet.codeplex.com/discussions/458547 indeed.
                     var e = engine.Evaluate(deferedStatement);
                 }
                 // You can now access x defined in the R environment.
