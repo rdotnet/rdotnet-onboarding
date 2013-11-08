@@ -95,7 +95,11 @@ h4, h5, h6 {
     <div>
     
         A minimal ASP.NET page accessing R via R.NET<br />
-        Written by an ASP.NET newbie - be forgiving...</div>
+        Written by an ASP.NET newbie - be forgiving...<br />
+        <br />
+        Set the CStackLimit to -1:&nbsp;
+        <asp:Button ID="btnSetCStack" runat="server" OnClick="btnSetCStack_Click" Text="CStackLimit = -1" />
+        </div>
     <h3>REPL</h3>
         <p>&nbsp;Enter R statement input </p>
         <p>

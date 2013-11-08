@@ -72,5 +72,11 @@ namespace WebApplicationRdn
             sb.Append(" ]");
             return sb.ToString();
         }
+
+        internal static void SetCStackLimit()
+        {
+            var addr = Engine.DangerousGetHandle("R_CStackLimit");
+            System.Runtime.InteropServices.Marshal.WriteInt32(addr, -1);
+        }
     }
 }

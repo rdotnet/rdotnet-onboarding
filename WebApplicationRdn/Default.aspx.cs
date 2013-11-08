@@ -46,5 +46,10 @@ namespace WebApplicationRdn
         {
             this.tbResult.Text = string.Empty;
         }
+
+        protected void btnSetCStack_Click(object sender, EventArgs e)
+        {
+            Rdn.SetCStackLimit();
+        }
     }
 }
