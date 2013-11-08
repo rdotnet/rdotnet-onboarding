@@ -102,8 +102,8 @@ h4, h5, h6 {
             <asp:TextBox ID="tbStatement" runat="server" Height="213px" TextMode="MultiLine" Width="896px"></asp:TextBox>
             <asp:Button ID="btSubmitStatement" runat="server" OnClick="btSubmitStatement_Click" Text="Submit" />
         </p>
-        <p>&nbsp;source file:<asp:FileUpload ID="fuRscript" runat="server" />
-            <asp:Button ID="btSubmitScript" runat="server" OnClick="btSubmitScript_Click" Text="Submit" />
+        <p>&nbsp;(DOES NOT WORK) source file:<asp:FileUpload ID="fuRscript" runat="server" Enabled="False" />
+            <asp:Button ID="btSubmitScript" runat="server" OnClick="btSubmitScript_Click" Text="Submit" Enabled="False" />
 &nbsp;&nbsp;</p>
         <p>&nbsp; </p>
         <p>Result:</p>
