@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorld", "HelloWorld\HelloWorld.csproj", "{08244E5B-EF06-41FC-B81A-D8E0415292F4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RDotNetSetup", "RDotNetSetup\RDotNetSetup.csproj", "{5A41CEBA-0BB9-4802-915E-86B951A41AF0}"
@@ -13,9 +15,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample2", "Sample2\Sample2.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Optimization", "Optimization\Optimization.csproj", "{B868339A-56F3-4818-BB7C-D3C53BCFF1C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplicationBasic", "WebApplicationBasic\WebApplicationBasic.csproj", "{1E1E927F-6CB9-45FF-893E-889F0CC02633}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplicationRdn", "WebApplicationRdn\WebApplicationRdn.csproj", "{09FC288B-6CC9-4308-8199-95C3A4849C96}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{3DC60A5E-F1D1-4794-8B8C-4519839DC93E}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +52,6 @@ Global
 		{B868339A-56F3-4818-BB7C-D3C53BCFF1C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B868339A-56F3-4818-BB7C-D3C53BCFF1C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B868339A-56F3-4818-BB7C-D3C53BCFF1C5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1E1E927F-6CB9-45FF-893E-889F0CC02633}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1E1E927F-6CB9-45FF-893E-889F0CC02633}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1E1E927F-6CB9-45FF-893E-889F0CC02633}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1E1E927F-6CB9-45FF-893E-889F0CC02633}.Release|Any CPU.Build.0 = Release|Any CPU
 		{09FC288B-6CC9-4308-8199-95C3A4849C96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{09FC288B-6CC9-4308-8199-95C3A4849C96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09FC288B-6CC9-4308-8199-95C3A4849C96}.Release|Any CPU.ActiveCfg = Release|Any CPU
