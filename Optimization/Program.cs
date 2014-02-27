@@ -1,6 +1,5 @@
 using System;
 using RDotNet;
-using RDotNetSetup;
 using System.Linq;
 
 namespace Optimization

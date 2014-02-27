@@ -38,9 +38,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="RDotNet.NativeLibrary">
-      <HintPath>..\Binaries\RDotNet.NativeLibrary.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SetupHelper.cs" />
