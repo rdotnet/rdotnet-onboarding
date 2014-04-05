@@ -13,9 +13,9 @@ namespace HelloWorld
    {
       static void Main(string[] args)
       {
-         REngine.SetEnvironmentVariables();
+         REngine.SetEnvironmentVariables(); // <-- May be omitted; next line would call it.
          REngine engine = REngine.GetInstance();
-         engine.Initialize(); // required since v1.5
+         // A somewhat contrived but customary Hello World:
          CharacterVector charVec = engine.CreateCharacterVector(new[] { "Hello, R world!, .NET speaking" });
          engine.SetSymbol("greetings", charVec);
          engine.Evaluate("str(greetings)"); // print out in the console

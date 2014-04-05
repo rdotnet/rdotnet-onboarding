@@ -1,5 +1,4 @@
 ﻿using RDotNet;
-using RDotNetSetup;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,28 +13,48 @@ namespace Sample2
       static void Main(string[] args)
       {
          // Sample code used for updating the documentation at the codeplex web site.
-         SetupHelper.SetupPath();
-         using (REngine engine = REngine.CreateInstance("RDotNet"))
+         using (REngine engine = REngine.GetInstance())
          {
-            engine.Initialize();
             var e = engine.Evaluate("x <- 3");
             // You can now access x defined in the R environment.
             NumericVector x = engine.GetSymbol("x").AsNumeric();
             engine.Evaluate("y <- 1:10");
             NumericVector y = engine.GetSymbol("y").AsNumeric();
 
-            // Invoking functions
-            // invoking expand.grid directly would not work as of R.NET 1.5.5, 
-            // because it has a '...' pairlist argument. We need a wrapper function.
-            var expandGrid = engine.Evaluate("function(x, y) { expand.grid(x=x, y=y) }").AsFunction();
+            // Invoking functions; Previously you may have needed custom function definitions
+            var myFunc = engine.Evaluate("function(x, y) { expand.grid(x=x, y=y) }").AsFunction();
             var v1 = engine.CreateIntegerVector(new[] { 1, 2, 3 });
             var v2 = engine.CreateCharacterVector(new[] { "a", "b", "c" });
-            var df = expandGrid.Invoke(new SymbolicExpression[] { v1, v2 }).AsDataFrame();
+            var df = myFunc.Invoke(new SymbolicExpression[] { v1, v2 }).AsDataFrame();
+
+            // As of R.NET 1.6, more function call syntaxes are supported.
+            var expandGrid = engine.Evaluate("expand.grid").AsFunction();
+            var d = new Dictionary<string, SymbolicExpression>();
+            d["x"] = v1;
+            d["y"] = v2;
+            df = expandGrid.Invoke(d).AsDataFrame();
+
+            // querying data frames
             engine.SetSymbol("cases", df);
-            // Not correct: the 'y' column is a "factor". This returns "1", "1", "1", "2", "2", etc. 
+            // As of R.NET 1.6, factor to character expressions work consistently with R
+
             var letterCases = engine.Evaluate("cases[,'y']").AsCharacter().ToArray();
-            // This returns something more intuitive for C#. Returns 'a','a','a','b','b','b','c' etc.
-            letterCases = engine.Evaluate("as.character(cases[,'y'])").AsCharacter().ToArray();
+            // "a","a","a","b","b","b", etc. Same as as.character(cases[,'y']) in R
+            // This used to return  "1", "1", "1", "2", "2", etc. with R.NET 1.5.5
+
+            // Equivalent:
+            letterCases = df[1].AsCharacter().ToArray();
+            letterCases = df["y"].AsCharacter().ToArray();
+
+            // Accessing items by two dimensional indexing
+            string s = (string)df[1, 1]; // "a"
+            s = (string)df[3, 1]; // "a"
+            s = (string)df[3, "y"]; // "b"
+            // s = (string)df["4", "y"]; // fails because there are no row names
+            df[3, "y"] = "a";
+            s = (string)df[3, "y"]; // "a"
+            df[3, "y"] = "d";
+            s = (string)df[3, "y"]; // null, because we have an <NA> string in R
 
             // invoking a whole script
             // engine.Evaluate("source('c:/src/path/to/myscript.r')");
