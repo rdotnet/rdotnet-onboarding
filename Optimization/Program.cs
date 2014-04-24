@@ -26,6 +26,8 @@ namespace Optimization
             TestOptimCsharp(engine);
             // the optimization engine is in R, the objective function is in C#
             TestOptimR(engine);
+            Console.WriteLine("Enter any key...");
+            Console.ReadKey();
          }
       }
 

@@ -1,7 +1,7 @@
 R.NET quick start
 ==================
 
-This documentation is for R.NET 1.5.10, which was released on 2014-04-19.
+This documentation is for R.NET 1.5.11, which was released on 2014-04-24.
 
 This repository contains C# code for new users of [R.NET](http://rdotnet.codeplex.com). Note that the github repository of this [quick start guide](https://github.com/jmp75/rdotnet-onboarding) may be transient and lead to more stable documentation on the R.NET site down the track.
 

@@ -17,8 +17,7 @@ namespace WebApplicationRdn
             else
             {
                 REngine.SetEnvironmentVariables();
-                Engine = REngine.CreateInstance("REngine");
-                Engine.Initialize();
+                Engine = REngine.GetInstance();
             }
         }
 
@@ -32,11 +31,11 @@ namespace WebApplicationRdn
                 switch (sexp.Type)
                 {
                        case SymbolicExpressionType.CharacterVector:
-                            return PrintDisplay(sexp.AsCharacter().ToArrayFast());
+                            return PrintDisplay(sexp.AsCharacter().ToArray());
                        case SymbolicExpressionType.NumericVector:
-                            return PrintDisplay(sexp.AsNumeric().ToArrayFast());
+                            return PrintDisplay(sexp.AsNumeric().ToArray());
                        case SymbolicExpressionType.IntegerVector:
-                            return PrintDisplay(sexp.AsInteger().ToArrayFast());
+                            return PrintDisplay(sexp.AsInteger().ToArray());
                        default:
                             return sexp.Type.ToString();
                 }
