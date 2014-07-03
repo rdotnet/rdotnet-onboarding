@@ -31,21 +31,23 @@ namespace WebApplicationRdn.Controllers
 
     public class CodeController : ApiController
     {
-        private readonly REngine _engine;
-        private readonly SvgGraphicsDevice _graphicsDevice = new SvgGraphicsDevice(new SvgContextMapper(700, 700, SvgUnitType.Pixel, null));
-        private readonly CharacterDevice _characterDevice = new CharacterDevice();
-        private readonly SymbolicExpressionToResultMapper _mapper = new SymbolicExpressionToResultMapper();
+        private static REngine _engine;
+        private static readonly SvgGraphicsDevice GraphicsDevice = new SvgGraphicsDevice(new SvgContextMapper(700, 700, SvgUnitType.Pixel, null));
+        private static readonly CharacterDevice CharacterDevice = new CharacterDevice();
+        private static readonly SymbolicExpressionToResultMapper Mapper = new SymbolicExpressionToResultMapper();
 
         public CodeController()
         {
-            _engine = REngine.GetInstance(null, true, null, _characterDevice);
+            if (_engine != null) return;
+
+            _engine = REngine.GetInstance(null, true, null, CharacterDevice);
             _engine.Initialize();
-            _engine.Install(_graphicsDevice);
+            _engine.Install(GraphicsDevice);
         }
 
         public RCode Execute(int id, [FromBody] RCode code)
         {
-            _graphicsDevice.ClearImages();
+            GraphicsDevice.ClearImages();
 
             if (string.IsNullOrEmpty(code.Block))
             {
@@ -56,11 +58,11 @@ namespace WebApplicationRdn.Controllers
             var statements = code.Block.Split(new[] { ';', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries); //TODO: Use tokenizer.
             try
             {
-                _characterDevice.ResetConsole();
+                CharacterDevice.ResetConsole();
                 var evaluated = statements.Select(_engine.Evaluate).ToList();
-                var plots = _graphicsDevice.GetImages().Select(RenderSvg).ToList();
-                var console = _characterDevice.GetOutput().ToList();
-                var internalResults = evaluated.Select(_mapper.Map).ToList();
+                var plots = GraphicsDevice.GetImages().Select(RenderSvg).ToList();
+                var console = CharacterDevice.GetOutput().ToList();
+                var internalResults = evaluated.Select(Mapper.Map).ToList();
 
                 var result = new RResult
                 {
