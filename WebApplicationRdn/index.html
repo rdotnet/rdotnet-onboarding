@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head lang="en">
+    <title></title>
+
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Scripts/codemirror/theme/base16-light.css" rel="stylesheet" />
+    <link href="Scripts/codemirror/lib/codemirror.css" rel="stylesheet" />
+
+    <script src="Scripts/codemirror/lib/codemirror.js"></script>
+    <script src="Scripts/codemirror/mode/r/r.js"></script>
+
+    <script type="text/javascript" src="Scripts/angular.js"></script>
+    <script type="text/javascript" src="Scripts/angular-resource.js"></script>
+    <script type="text/javascript" src="Scripts/angular-sanitize.js"></script>
+    <script src="Scripts/angular-ui-codemirror/ui-codemirror.js"></script>
+
+    <style>
+        .CodeMirror {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body ng-app="editor">
+    <div ng-controller="CodeCtrl">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="panel panel-primary">
+                    <div class="alert alert-info">
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-repeat="output in code.Result.Console">{{output}}</li>
+                        </ul>
+                    </div>
+                    <div class="alert alert-danger">
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-repeat="error in code.Result.Errors">{{error}}</li>
+                        </ul>
+                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item" ng-repeat="image in code.Result.Plots">
+                            <div ng-bind-html="unsafe(image)"></div>
+                        </li>
+                    </ul>
+                    <div class="panel-body">
+                        <textarea ng-model="code.Block" ui-codemirror="editorOptions" class="form-control" rows="10"></textarea>
+                    </div>
+                    <div ng-if="waiting">Waiting...</div>
+                    <div class="panel-footer">
+                        <button class="btn btn-primary pull-right" ng-disabled="waiting" ng-click="executeCode()">Execute <i class="glyphicon glyphicon-play"></i></button>
+                        <button class="btn" ng-disabled="waiting" ng-click="clearCode()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var codeEditor = angular.module('editor', ['ngResource', 'ui.codemirror', 'ngSanitize']);
+
+        codeEditor.factory('Code', function ($resource) {
+            return $resource('/api/code/:Id', { Id: '@Id' }, {
+                execute: { method: 'POST', url: '/api/code/:Id/execute' }
+            });
+        });
+
+        codeEditor.controller('CodeCtrl', function ($scope, $sce, Code) {
+            $scope.editorOptions = {
+                lineWrapping: true,
+                lineNumbers: true,
+                mode: 'r',
+                theme: 'base16-light'
+            };
+
+            $scope.code = new Code({Id: 0});
+
+            $scope.clearCode = function () {
+                $scope.code.Block = '';
+                $scope.code.Errors = [];
+            }
+
+            $scope.executeCode = function () {
+                $scope.waiting = true;
+                $scope.code.Errors = [];
+
+                $scope.code.$execute(function() {
+                    $scope.waiting = false;
+                });
+            }
+
+            $scope.unsafe = function(s) {
+                return $sce.trustAsHtml(s);
+            }
+        });
+
+    </script>
+</body>
+
+</html>

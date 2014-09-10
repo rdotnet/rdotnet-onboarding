@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("WebApplicationRdn")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("CSIRO")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("WebApplicationRdn")]
-[assembly: AssemblyCopyright("Copyright © CSIRO 2013")]
+[assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("af7865a9-32d1-4951-a210-860314c781ba")]
+[assembly: Guid("e1e960cc-16b1-4442-b39d-98180b29b4b2")]
 
 // Version information for an assembly consists of the following four values:
 //
