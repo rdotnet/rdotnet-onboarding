@@ -7,7 +7,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{200A3D74-C19B-442A-9F52-E4208300A966}</ProjectGuid>
+    <ProjectGuid>{09FC288B-6CC9-4308-8199-95C3A4849C96}</ProjectGuid>
     <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -40,6 +40,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="RDotNet, Version=1.5.16.30632, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\R.NET.Community.1.5.16\lib\net40\RDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="RDotNet.Graphics">
+      <HintPath>..\packages\R.NET.Community.Graphics.0.1.2-alpha\lib\net40\RDotNet.Graphics.dll</HintPath>
+    </Reference>
+    <Reference Include="RDotNet.NativeLibrary, Version=1.5.16.30632, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\R.NET.Community.1.5.16\lib\net40\RDotNet.NativeLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="Svg">
       <HintPath>..\packages\Svg.1.7.0\lib\Svg.dll</HintPath>
     </Reference>
@@ -174,20 +185,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Scripts\_references.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\rdotnet\R.NET\RDotNet.csproj">
-      <Project>{0923e1a0-2032-4997-ab73-49e42c4034a9}</Project>
-      <Name>RDotNet</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\rdotnet\RDotNet.Graphics\RDotNet.Graphics.csproj">
-      <Project>{bcadf6cf-2d63-4bd7-bc28-f0ac4f98ae78}</Project>
-      <Name>RDotNet.Graphics</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\rdotnet\RDotNet.NativeLibrary\RDotNet.NativeLibrary.csproj">
-      <Project>{2a089a59-0f22-4484-b442-0fe8bda10879}</Project>
-      <Name>RDotNet.NativeLibrary</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

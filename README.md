@@ -1,7 +1,7 @@
 R.NET quick start
 ==================
 
-This documentation is for R.NET 1.5.11, which was released on 2014-04-24.
+This documentation is for R.NET 1.5.16, which was released on 2014-09-11.
 
 This repository contains C# code for new users of [R.NET](http://rdotnet.codeplex.com). Note that the github repository of this [quick start guide](https://github.com/jmp75/rdotnet-onboarding) may be transient and lead to more stable documentation on the R.NET site down the track.
 
@@ -50,5 +50,6 @@ You may want to look at and experiment with the projects in the following order:
 * HelloWorld
 * Sample1 is taken from the R.NET web site, a simple statistical T-test
 * Sample2 is mostly for issues diagnosis at this stage
+* WebApplicationRdn: Started as a way to diagnose often reported issues - since greatly expanded by skyguy94
 * Optimization: Adapted from my day work; simplified calibration and optimization problem. Shows various ways to call an R function including vectorized function evaluations.
 * Tutorial1: To Be Determined
