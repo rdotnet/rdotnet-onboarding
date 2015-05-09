@@ -105,7 +105,7 @@ namespace WebApplicationRdn.Models
         public void DrawPolygon(IEnumerable<Point> points, GraphicsContext context, DeviceDescription description)
         {
             var svgContext = _mapper.MapGraphicsContextToSvg(context);
-            var collection = new SvgUnitCollection();
+            var collection = new SvgPointCollection();
             collection.AddRange(points.Select(p => _mapper.MapPoint(p))
                                       .Select(p => new[] { p.X, p.Y })
                                       .SelectMany(p => p));
@@ -125,7 +125,7 @@ namespace WebApplicationRdn.Models
         public void DrawPolyline(IEnumerable<Point> points, GraphicsContext context, DeviceDescription description)
         {
             var svgContext = _mapper.MapGraphicsContextToSvg(context);
-            var collection = new SvgUnitCollection();
+            var collection = new SvgPointCollection();
 
             collection.AddRange(points.Select(p => _mapper.MapPoint(p, SvgUnitType.User))
                                       .Select(p => new[] { p.X, p.Y })
@@ -217,10 +217,22 @@ namespace WebApplicationRdn.Models
                 FontWeight = svgContext.Font.Weight,
                 Text = s,
                 TextAnchor = svgContext.TextAnchor,
-                X = 0f,
-                Y = 0f,
+                X = createUnitCollection(0f),
+                Y = createUnitCollection(0f),
             };
             return text.Bounds.Width;
+        }
+
+        private SvgUnitCollection createUnitCollection(params float[] p)
+        {
+            return createUnitCollection(Array.ConvertAll(p, x => new SvgUnit(x)));
+        }
+
+        private SvgUnitCollection createUnitCollection(params SvgUnit[] p)
+        {
+            var c = new SvgUnitCollection();
+            c.AddRange(p);
+            return c;
         }
 
         public void DrawText(string s, Point location, double rotation, double adjustment, GraphicsContext context, DeviceDescription description)
@@ -235,8 +247,8 @@ namespace WebApplicationRdn.Models
                 Text = s,
                 TextAnchor = svgContext.TextAnchor,
                 Transforms = new SvgTransformCollection { svgContext.Coordinate.Rotation },
-                X = svgContext.Coordinate.X,
-                Y = svgContext.Coordinate.Y,
+                X = createUnitCollection(svgContext.Coordinate.X),
+                Y = createUnitCollection(svgContext.Coordinate.Y)
             });
         }
 
