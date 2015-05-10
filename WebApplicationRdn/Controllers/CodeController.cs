@@ -7,6 +7,7 @@ using RDotNet;
 using RDotNet.Graphics;
 using Svg;
 using WebApplicationRdn.Models;
+using System.Web.Mvc;
 
 namespace WebApplicationRdn.Controllers
 {
@@ -100,6 +101,14 @@ namespace WebApplicationRdn.Controllers
         {
             code.Result = new RResult { Errors = new List<string> { ex.Message } };
             return code;
+        }
+    }
+
+    public class HomeController : Controller
+    {
+        public ViewResult Index()
+        {
+            return View();
         }
     }
 }
