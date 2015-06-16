@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
+# Visual Studio Express 2013 for Windows Desktop
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorld", "..\..\HelloWorld\HelloWorld.csproj", "{08244E5B-EF06-41FC-B81A-D8E0415292F4}"
@@ -12,11 +12,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample2", "..\..\Sample2\Sample2.csproj", "{5F32FEAE-DBD5-4650-83AC-7D9DDEC83819}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Optimization", "..\..\Optimization\Optimization.csproj", "{B868339A-56F3-4818-BB7C-D3C53BCFF1C5}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "..\..\doc", "{3DC60A5E-F1D1-4794-8B8C-4519839DC93E}"
-	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupportSamples", "..\..\SupportSamples\SupportSamples.csproj", "{5ED2552D-0B1F-4823-8A7E-29905F066D2C}"
 EndProject
