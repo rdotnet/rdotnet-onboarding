@@ -1,5 +1,5 @@
 ﻿using System;
-using RDotNet;
+using RDotNet.NativeLibrary;
 
 namespace ReportInfo
 {
@@ -7,18 +7,17 @@ namespace ReportInfo
     {
         static void Main(string[] args)
         {
-            REngine.SetEnvironmentVariables();
-            // and/or
-            // REngine engine = REngine.GetInstance();
+            string rHome = null;
+            string rPath = null;
+            if (args.Length > 0)
+                rPath = args[0];
+            if (args.Length > 1)
+                rHome = args[1];
 
-
-            var logInfo = RDotNet.NativeLibrary.NativeUtility.SetEnvironmentVariablesLog;
+            var logInfo = NativeUtility.FindRPaths(ref rPath, ref rHome);
 
             Console.WriteLine("Is this process 64 bits? {0}", System.Environment.Is64BitProcess);
             Console.WriteLine(logInfo);
-
-            // engine.Dispose();
-
         }
     }
 }
