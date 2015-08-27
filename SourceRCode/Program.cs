@@ -35,7 +35,21 @@ sqr <- function(x) {
             engine.AutoPrint = false;
             a = engine.Evaluate("sqr(0:1000)").AsNumeric().ToArray();
 
-            Console.WriteLine("Length(a) is "+a.Length+", but the vector has not been written out to the console");                
+            Console.WriteLine("Length(a) is "+a.Length+", but the vector has not been written out to the console");
+
+            /*
+            // if testing for http://stackoverflow.com/questions/32236596/calling-user-defined-functions-inside-a-script-in-r-net
+            double value1 = 1, value2 = 2;
+            var dataframe = engine.Evaluate(string.Format("dataframe <- userDefinedFunctionOne(parameter1 = {0}, parameter2 = {1})",
+                                                        value1,
+                                                        value2)).AsDataFrame();
+             // with
+             // userDefinedFunctionOne <- function(parameter1, parameter2) {
+             //    return( data.frame(a=parameter1, b=parameter2) )
+             // }
+
+            */
+
             Console.WriteLine("Press any key to exit the program");
             Console.ReadKey();
             engine.Dispose();
