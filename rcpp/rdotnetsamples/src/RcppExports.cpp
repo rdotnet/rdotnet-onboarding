@@ -5,25 +5,6 @@
 
 using namespace Rcpp;
 
-// register_default_progress_handler
-void register_default_progress_handler();
-RcppExport SEXP rdotnetsamples_register_default_progress_handler() {
-BEGIN_RCPP
-    Rcpp::RNGScope __rngScope;
-    register_default_progress_handler();
-    return R_NilValue;
-END_RCPP
-}
-// register_progress_handler
-void register_progress_handler(void* handler);
-RcppExport SEXP rdotnetsamples_register_progress_handler(SEXP handlerSEXP) {
-BEGIN_RCPP
-    Rcpp::RNGScope __rngScope;
-    Rcpp::traits::input_parameter< void* >::type handler(handlerSEXP);
-    register_progress_handler(handler);
-    return R_NilValue;
-END_RCPP
-}
 // broadcast_progress_update
 void broadcast_progress_update(CharacterVector message, NumericVector percentage);
 RcppExport SEXP rdotnetsamples_broadcast_progress_update(SEXP messageSEXP, SEXP percentageSEXP) {
@@ -32,6 +13,15 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< CharacterVector >::type message(messageSEXP);
     Rcpp::traits::input_parameter< NumericVector >::type percentage(percentageSEXP);
     broadcast_progress_update(message, percentage);
+    return R_NilValue;
+END_RCPP
+}
+// register_default_progress_handler
+void register_default_progress_handler();
+RcppExport SEXP rdotnetsamples_register_default_progress_handler() {
+BEGIN_RCPP
+    Rcpp::RNGScope __rngScope;
+    register_default_progress_handler();
     return R_NilValue;
 END_RCPP
 }

@@ -1,5 +1,5 @@
 # To build the package you must have a working installation of RTools, and the Rcpp package installed.
-
+library(Rcpp)
 # Package skeleton was created with:
 pkgDir <- "C:/src/github_jm/rdotnet-onboarding/rcpp"
 Rcpp.package.skeleton(name = "rdotnetsamples", list = character(), 

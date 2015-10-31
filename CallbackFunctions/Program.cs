@@ -69,10 +69,8 @@ my_r_calculation <- function()
             CallBackHandlers cbh = new CallBackHandlers();
             cback.MyHandler = cbh.ProcessProgress;
 
-            // Rcpp exports a wrapper function named rdotnetsamples_register_progress_handler in RcppExports.cpp
-            // not the manually written register_progress_handler in rdotnet_samples.cpp
-            string rcppNamedExportCFun = "rdotnetsamples_register_progress_handler";
-            register_default_progress_handler registerHandlerFun = dll.GetFunction<register_default_progress_handler>(rcppNamedExportCFun);
+            string cFunctionRegisterCallback = "register_progress_handler";
+            register_default_progress_handler registerHandlerFun = dll.GetFunction<register_default_progress_handler>(cFunctionRegisterCallback);
             registerHandlerFun(cback.MyHandler);
 
             Console.WriteLine();

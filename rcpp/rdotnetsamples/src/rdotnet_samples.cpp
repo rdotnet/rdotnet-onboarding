@@ -2,7 +2,23 @@
 #include <Rcpp.h>
 #include <sstream>
 
+#include "rdotnet_samples.h"
+
 using namespace Rcpp;
+
+// [[Rcpp::export]]
+void broadcast_progress_update(CharacterVector message, NumericVector percentage) {
+	std::string msg = as<std::string>(message);
+	double p = percentage[0];
+	if(progress_handler != nullptr)
+		(*progress_handler)(msg.c_str(), p);
+}
+
+// [[Rcpp::export]]
+void register_default_progress_handler()
+{
+	register_progress_handler((void*)&default_progress_handler);
+}
 
 namespace patch
 {
@@ -25,25 +41,8 @@ void default_progress_handler(const char * message, double percentage)
 	Rprintf( "%s : %s\n", p.c_str(), msg.c_str() );
 }
 
-typedef void(*progress_callback)(const char * message, double percentage);
-progress_callback progress_handler = nullptr;
-
-// [[Rcpp::export]]
-void register_default_progress_handler()
-{
-	progress_handler = &default_progress_handler;
-}
-
-// [[Rcpp::export]]
 void register_progress_handler(void* handler)
 {
 	progress_handler = (progress_callback)handler;
 }
 
-// [[Rcpp::export]]
-void broadcast_progress_update(CharacterVector message, NumericVector percentage) {
-	std::string msg = as<std::string>(message);
-	double p = percentage[0];
-	if(progress_handler != nullptr)
-		(*progress_handler)(msg.c_str(), p);
-}
