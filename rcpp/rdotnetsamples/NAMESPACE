@@ -1,0 +1,3 @@
+useDynLib(rdotnetsamples)
+exportPattern("^[[:alpha:]]+")
+importFrom(Rcpp, evalCpp)

@@ -1,0 +1,11 @@
+Package: rdotnetsamples
+Type: Package
+Title: An R package with sample code for R.NET documentation
+Version: 1.0
+Date: 2015-10-31
+Author: Jean-Michel Perraud
+Maintainer: jean-Michel Perraud <jean-michel.perraud@csiro.au>
+Description: An R package with sample code for R.NET documentation
+License: MIT
+Imports: Rcpp (>= 0.12.1)
+LinkingTo: Rcpp
