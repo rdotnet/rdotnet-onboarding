@@ -64,7 +64,7 @@ my_r_calculation <- function()
 
             var unixDllPath = engine.Evaluate("getLoadedDLLs()$rdotnetsamples[['path']]").AsCharacter()[0];
             var dllPath = unixDllPath.Replace("/", "\\");
-            var dll = new UnmanagedDll(dllPath);
+            var dll = new DynamicInterop.UnmanagedDll(dllPath);
             TestCallback cback = new TestCallback();
             CallBackHandlers cbh = new CallBackHandlers();
             cback.MyHandler = cbh.ProcessProgress;
