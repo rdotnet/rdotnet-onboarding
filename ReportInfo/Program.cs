@@ -7,8 +7,8 @@ namespace ReportInfo
     {
         static void Main(string[] args)
         {
-            string rHome = null;
-            string rPath = null;
+            string rHome = string.Empty;
+            string rPath = string.Empty;
             if (args.Length > 0)
                 rPath = args[0];
             if (args.Length > 1)
