@@ -9,3 +9,4 @@ Description: An R package with sample code for R.NET documentation
 License: MIT
 Imports: Rcpp (>= 0.12.1)
 LinkingTo: Rcpp
+Suggests: testthat

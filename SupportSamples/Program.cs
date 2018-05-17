@@ -10,7 +10,7 @@ namespace SupportSamples
 			REngine.SetEnvironmentVariables();
 			REngine engine = REngine.GetInstance();
 			//stackoverflow_27689786_2752565 (engine);
-			stackoverflow_27597542_2752565 (engine);
+            codeplex_discussion_647874(engine);
 			// you should always dispose of the REngine properly.
 			// After disposing of the engine, you cannot reinitialize nor reuse it
 			engine.Dispose();
@@ -67,5 +67,23 @@ namespace SupportSamples
 				Console.WriteLine ("m$components[{0}] = {1}", i + 1, components [i]);
 			}
 		}
+
+        static void codeplex_discussion_647874(REngine engine)
+		{
+			var npkscript = @"
+op <- options(contrasts = c('contr.helmert', 'contr.poly'))
+npk.aov <- aov(yield ~ block + N*P*K, npk)
+npk.sum <- summary(npk.aov)
+			";
+            engine.Evaluate(npkscript);
+            var m = engine.GetSymbol("npk.sum").AsList();
+			var df = m [0].AsDataFrame();
+            var names = df.Names;
+            var colnames = df.ColumnNames;
+            // should do some checkes on names
+
+            double[] meanSqr = df["Mean Sq"].AsNumeric().ToArray();
+		}
+
 	}
 }
