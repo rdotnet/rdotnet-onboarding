@@ -8,9 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="R.NET.Community">
-      <Version>1.6.5</Version>
-    </PackageReference>
+    <PackageReference Include="R.NET" Version="1.8.2" />
   </ItemGroup>
 
 </Project>
