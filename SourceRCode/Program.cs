@@ -40,7 +40,9 @@ sqr <- function(x) {
             /*
             // if testing for http://stackoverflow.com/questions/32236596/calling-user-defined-functions-inside-a-script-in-r-net
             double value1 = 1, value2 = 2;
-            var dataframe = engine.Evaluate(string.Format("dataframe <- userDefinedFunctionOne(parameter1 = {0}, parameter2 = {1})",
+            var dataframe = engine.Evaluate(string.Format(
+                                                        CultureInfo.InvariantCulture, 
+                                                        "dataframe <- userDefinedFunctionOne(parameter1 = {0}, parameter2 = {1})",
                                                         value1,
                                                         value2)).AsDataFrame();
              // with
