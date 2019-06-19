@@ -14,7 +14,7 @@ namespace ReportInfo
             if (args.Length > 1)
                 rHome = args[1];
 
-            var logInfo = NativeUtility.FindRPaths(ref rPath, ref rHome);
+            var logInfo = new NativeUtility(null).FindRPaths(ref rPath, ref rHome);
 
             Console.WriteLine("Is this process 64 bits? {0}", System.Environment.Is64BitProcess);
             Console.WriteLine(logInfo);
