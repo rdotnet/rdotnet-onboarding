@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using RDotNet;
 using System.Linq;
 
@@ -50,7 +51,7 @@ namespace Optimization
          {
             x = -1 + rand.NextDouble() * (3 - (-1));
             y = -1 + rand.NextDouble() * (3 - (-1));
-            r = engine.Evaluate(string.Format("rosen({0}, {1})", x, y)).AsNumeric().ToArray()[0];
+            r = engine.Evaluate(string.Format(CultureInfo.InvariantCulture, "rosen({0}, {1})", x, y)).AsNumeric().ToArray()[0];
             if (r < rb)
             {
                rb = r;
